@@ -18,6 +18,7 @@ def HCF_LCM(a,b):
                     return f"HCF is {i} and LCM is {lcm}"
                 else:
                     return f"HCF is 1 and LCM is {a*b}"
+    else:
         for i in range(a,0,-1):
             if remainder(b,i) == 0:
                 if a%i == 0:
