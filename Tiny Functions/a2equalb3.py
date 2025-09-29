@@ -7,7 +7,7 @@ def answer(n):
                 res.append(s)
     return res,len(res)
 
-print(answer(1000))
+#print(answer(1000))
 
 def answer2(n):
     res = []
