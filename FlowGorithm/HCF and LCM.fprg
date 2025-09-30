@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="HCF and LCM"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-12 06:53:02 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDY6MjY6NDUgUE07MzcwNA=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDY6NTM6MDIgUE07MTszODA1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a, b" type="Integer" array="False" size=""/>
+            <declare name="num" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <if expression="a&gt;b">
+                <then>
+                    <assign variable="num" expression="a"/>
+                    <for variable="i" start="b" end="1" direction="dec" step="1">
+                        <call expression="remainder"/>
+                    </for>
+                    <output expression="i" newline="True"/>
+                </then>
+                <else>
+                    <assign variable="num" expression="b"/>
+                    <for variable="i" start="a" end="1" direction="dec" step="1">
+                        <call expression="remainder"/>
+                    </for>
+                    <output expression="i" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="remainder" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="num" type="Integer" array="False" size=""/>
+            <declare name="a, b" type="Integer" array="False" size=""/>
+            <declare name="m, q" type="Integer" array="False" size=""/>
+            <assign variable="m" expression="0"/>
+            <assign variable="q" expression="0"/>
+            <while expression="m &lt; num">
+                <assign variable="m" expression="m + b"/>
+                <assign variable="q" expression="q+1"/>
+            </while>
+            <if expression="m == num">
+                <then/>
+                <else>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <output expression="q" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Calculator"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-10 07:06:31 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTA7MDY6Mzg6MDcgUE07MzcwMw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTA7MDc6MDY6MzEgUE07MTszODA0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;ENTER num1&quot;" newline="True"/>
+            <declare name="num1" type="Integer" array="False" size=""/>
+            <input variable="num1"/>
+            <output expression="&quot;ENTER num2&quot;" newline="True"/>
+            <declare name="num2" type="Integer" array="False" size=""/>
+            <input variable="num2"/>
+            <output expression="&quot;Enter Operator(+,-,*,/)&quot;" newline="True"/>
+            <declare name="Operator" type="String" array="False" size=""/>
+            <input variable="Operator"/>
+            <if expression="Operator == &quot;+&quot;">
+                <then>
+                    <output expression="num1 + num2" newline="True"/>
+                </then>
+                <else>
+                    <if expression="Operator == &quot;-&quot;">
+                        <then>
+                            <output expression="num1-num2" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="Operator == &quot;*&quot;">
+                                <then>
+                                    <output expression="num1 * num2" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="Operator == &quot;/&quot;">
+                                        <then>
+                                            <output expression="num1 / num2" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <output expression="&quot;Show Invaid Operator&quot;" newline="True"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Calculation of Density"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-17 11:02:52 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDc6NTg6NDUgUE07MzcxMA=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MTE6MDI6NTIgUE07NDszODA4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Calculation of Density&quot;" newline="True"/>
+            <declare name="m" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter m&quot;" newline="True"/>
+            <input variable="m"/>
+            <declare name="v" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter v&quot;" newline="True"/>
+            <input variable="v"/>
+            <output expression="&quot;Value of Density is &quot;&amp;m/v" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Sum of Numbers Loop"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-17 11:22:11 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MDg6MDY6NDcgUE07MzcxMQ=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MTE6MjI6MTEgUE07MjszODAz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter n&quot;" newline="True"/>
+            <input variable="n"/>
+            <declare name="p" type="Integer" array="False" size=""/>
+            <declare name="sum" type="Integer" array="False" size=""/>
+            <assign variable="sum" expression="0"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="0"/>
+            <declare name="Step" type="Integer" array="False" size=""/>
+            <assign variable="Step" expression="0"/>
+            <while expression="n &gt; 0">
+                <assign variable="p" expression="n % 10"/>
+                <assign variable="sum" expression="sum + p"/>
+                <assign variable="n" expression="n / 10"/>
+                <assign variable="i" expression="i + 1"/>
+            </while>
+            <declare name="q" type="Integer" array="False" size=""/>
+            <declare name="t" type="Integer" array="False" size=""/>
+            <declare name="z" type="Integer" array="False" size=""/>
+            <assign variable="z" expression="sum"/>
+            <declare name="r" type="Integer" array="False" size=""/>
+            <assign variable="t" expression="0"/>
+            <for variable="q" start="1" end="i-1" direction="inc" step="1">
+                <while expression="z &gt; 0">
+                    <assign variable="r" expression="z % 10"/>
+                    <assign variable="t" expression="t + r"/>
+                    <assign variable="z" expression="z/10"/>
+                </while>
+                <assign variable="Step" expression="Step + 1"/>
+            </for>
+            <output expression="&quot;Final Result: &quot;&amp;t" newline="True"/>
+            <output expression="&quot;No. of Steps: &quot;&amp;Step" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

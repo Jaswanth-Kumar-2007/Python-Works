@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Price Calculator"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-19 01:09:54 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTU7MDQ6Mzg6MTMgUE07MzcwMw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTk7MDE6MDk6NTQgUE07ODszODIy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="price" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter Price&quot;" newline="True"/>
+            <input variable="price"/>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <declare name="c" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <assign variable="count" expression="1"/>
+            <assign variable="a" expression="0"/>
+            <while expression="a &gt;= 0">
+                <for variable="c" start="0" end="a" direction="inc" step="1">
+                    <for variable="b" start="0" end="a" direction="inc" step="1">
+                        <if expression="10*a + 5*b + c = price">
+                            <then>
+                                <if expression="a &gt; b and a &gt; c">
+                                    <then>
+                                        <output expression="a&amp;&quot;,&quot;&amp;b&amp;&quot;,&quot;&amp;c" newline="True"/>
+                                        <breakpoint expression="" always="True"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </then>
+                            <else>
+                                <assign variable="count" expression="count + 1"/>
+                                <if expression="count &gt; 100000000000000">
+                                    <then>
+                                        <output expression="&quot;Price Cannot Be Formed With 10,5 and 1 Rupees&quot;" newline="True"/>
+                                        <breakpoint expression="" always="True"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                    </for>
+                </for>
+                <assign variable="a" expression="a+1"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>

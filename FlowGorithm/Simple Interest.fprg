@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Simple Interest"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-12 07:06:29 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDY6NTk6MDUgUE07MzcwNg=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDc6MDY6MjkgUE07MTszODEz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome to Simple Interest Program&quot;" newline="True"/>
+            <declare name="P" type="Integer" array="False" size=""/>
+            <declare name="N" type="Integer" array="False" size=""/>
+            <declare name="R" type="Integer" array="False" size=""/>
+            <declare name="Sum" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="j" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter P:&quot;" newline="True"/>
+            <input variable="P"/>
+            <output expression="&quot;Enter N:&quot;" newline="True"/>
+            <input variable="N"/>
+            <output expression="&quot;Enter R:&quot;" newline="True"/>
+            <input variable="R"/>
+            <assign variable="Sum" expression="0"/>
+            <for variable="i" start="1" end="P" direction="inc" step="1">
+                <for variable="j" start="1" end="N" direction="inc" step="1">
+                    <assign variable="Sum" expression="Sum + R"/>
+                </for>
+            </for>
+            <output expression="Sum/100" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

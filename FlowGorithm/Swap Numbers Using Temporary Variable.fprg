@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Swap Numbers Using Temporary Variable"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-17 10:22:03 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDY6NTM6MDUgUE07MzcwMA=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MTA6MjI6MDMgUE07MzszODA0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Welcome to Swap Numbers Program&quot;" newline="True"/>
+            <declare name="s" type="Integer" array="False" size=""/>
+            <declare name="a, b" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter Number1:&quot;" newline="True"/>
+            <input variable="a"/>
+            <output expression="&quot;Enter Number2:&quot;" newline="True"/>
+            <input variable="b"/>
+            <assign variable="s" expression="a"/>
+            <assign variable="a" expression="b"/>
+            <assign variable="b" expression="s"/>
+            <output expression="&quot;The Number 1 is &quot;&amp;a&amp;&quot; Number 2 is &quot;&amp;b" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

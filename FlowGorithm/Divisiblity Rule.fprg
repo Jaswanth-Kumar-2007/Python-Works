@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Divisiblity Rule"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-18 05:30:31 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTg7MDU6MjI6MzIgUE07MzcwMQ=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTg7MDU6MzA6MzEgUE07MjszODA4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Check Divisible By&quot;" newline="True"/>
+            <declare name="m" type="Integer" array="False" size=""/>
+            <input variable="m"/>
+            <output expression="&quot;Enter n&quot;" newline="True"/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <while expression="n &gt; 0">
+                <assign variable="n" expression="n - m"/>
+            </while>
+            <if expression="n = 0">
+                <then>
+                    <output expression="&quot;It is Divisible By &quot;&amp;m" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;It is Not Divisible By &quot;&amp;m" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

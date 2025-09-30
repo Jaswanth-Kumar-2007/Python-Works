@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Power of 2"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-12 08:07:40 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDg6MDU6NDcgUE07MzcwNQ=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDg6MDc6NDAgUE07MTszODA4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="Product" type="Integer" array="False" size=""/>
+            <assign variable="Product" expression="1"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="4" direction="inc" step="1">
+                <assign variable="Product" expression="Product*2"/>
+            </for>
+            <output expression="Product" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

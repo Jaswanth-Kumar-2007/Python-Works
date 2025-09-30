@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Calculation of I"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-12 07:58:43 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDc6NTI6MzkgUE07MzcwNw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDc6NTg6NDMgUE07MTszODE2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="I" type="Integer" array="False" size=""/>
+            <output expression="&quot;Calculation of I&quot;" newline="True"/>
+            <declare name="V" type="Integer" array="False" size=""/>
+            <declare name="R" type="Integer" array="False" size=""/>
+            <output expression="&quot;Input V&quot;" newline="True"/>
+            <input variable="V"/>
+            <output expression="&quot;Input R&quot;" newline="True"/>
+            <input variable="R"/>
+            <output expression="&quot;Value of I&quot;" newline="True"/>
+            <output expression="V/R" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
