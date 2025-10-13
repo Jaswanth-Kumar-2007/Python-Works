@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Swap Numbers Without Using Temporary Variable"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-14 03:18:35 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTQ7MDM6MTI6MjUgUE07MzY5Ng=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTQ7MDM6MTg6MzUgUE07MTszODEx"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Swap Two Numbers Without Using A Temporary Variable&quot;" newline="True"/>
+            <output expression="&quot;Enter a&quot;" newline="True"/>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <output expression="&quot;Enter b&quot;" newline="True"/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <input variable="b"/>
+            <assign variable="a" expression="a+b"/>
+            <assign variable="b" expression="a-b"/>
+            <assign variable="a" expression="a-b"/>
+            <output expression="&quot;a is &quot;&amp;a&amp;&quot; and b is &quot;&amp;b" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Find Max of a,b,c"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-17 10:53:28 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTI7MDc6MjM6MjkgUE07MzcwNA=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MTA6NTM6MjggUE07MjszODE0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Find Max of a,b,c&quot;" newline="True"/>
+            <output expression="&quot;Enter a&quot;" newline="True"/>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <output expression="&quot;Enter b&quot;" newline="True"/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <input variable="b"/>
+            <output expression="&quot;Enter c&quot;" newline="True"/>
+            <declare name="c" type="Integer" array="False" size=""/>
+            <input variable="c"/>
+            <if expression="a &gt; b">
+                <then>
+                    <if expression="a &gt; c">
+                        <then>
+                            <output expression="&quot;a is Bigger&quot;" newline="True"/>
+                            <if expression="b &gt; c">
+                                <then>
+                                    <output expression="a&amp;&quot;&gt;&quot;&amp;b&amp;&quot;&gt;&quot;&amp;c" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="a&amp;&quot;&gt;&quot;&amp;c&amp;&quot;&gt;&quot;&amp;b" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot; c is bigger&quot;" newline="True"/>
+                            <output expression="c&amp;&quot;&gt;&quot;&amp;a&amp;&quot;&gt;&quot;&amp;b" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <if expression="b &gt; c">
+                        <then>
+                            <output expression="&quot;b is Bigger&quot;" newline="True"/>
+                            <if expression="a &gt; c">
+                                <then>
+                                    <output expression="b&amp;&quot;&gt;&quot;&amp;a&amp;&quot;&gt;&quot;&amp;c" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="b&amp;&quot;&gt;&quot;&amp;c&amp;&quot;&gt;&quot;&amp;a" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;c is Bigger&quot;" newline="True"/>
+                            <output expression="c&amp;&quot;&gt;&quot;&amp;b&amp;&quot;&gt;&quot;&amp;a" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Compound Interest"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-14 04:31:15 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTQ7MDM6MTg6NTMgUE07MzcwMw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTQ7MDQ6MzE6MTUgUE07MjszODA2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Calculate Compound Interest&quot;" newline="True"/>
+            <declare name="R" type="Integer" array="False" size=""/>
+            <declare name="N" type="Integer" array="False" size=""/>
+            <declare name="P" type="Integer" array="False" size=""/>
+            <declare name="q" type="Real" array="False" size=""/>
+            <output expression="&quot;P&quot;" newline="True"/>
+            <input variable="P"/>
+            <output expression="&quot;N&quot;" newline="True"/>
+            <input variable="N"/>
+            <output expression="&quot;R&quot;" newline="True"/>
+            <input variable="R"/>
+            <declare name="m" type="Real" array="False" size=""/>
+            <declare name="res" type="Real" array="False" size=""/>
+            <assign variable="m" expression="1 + (R/100)"/>
+            <call expression="pow (m , N) "/>
+            <assign variable="q" expression="Pow(m,N)"/>
+            <assign variable="res" expression="P*q"/>
+            <output expression="&quot;Result = &quot;&amp;res-P" newline="True"/>
+        </body>
+    </function>
+    <function name="pow" type="Real" variable="q">
+        <parameters>
+            <parameter name="s" type="Real" array="False"/>
+            <parameter name="n" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="q" type="Real" array="False" size=""/>
+            <assign variable="q" expression="s"/>
+            <for variable="i" start="1" end="n-1" direction="inc" step="1">
+                <assign variable="q" expression="q*s"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

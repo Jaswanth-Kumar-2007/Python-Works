@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="PYTHAGORAS"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-15 04:32:32 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTU7MDQ6MDQ6NTkgUE07MzcwNg=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTU7MDQ6MzI6MzIgUE07MjszODA3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Pythagoras Calculator&quot;" newline="True"/>
+            <declare name="a" type="Integer" array="False" size=""/>
+            <declare name="b" type="Integer" array="False" size=""/>
+            <declare name="c" type="Integer" array="False" size=""/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter n&quot;" newline="True"/>
+            <input variable="n"/>
+            <for variable="c" start="1" end="n" direction="inc" step="1">
+                <for variable="b" start="1" end="c" direction="inc" step="1">
+                    <for variable="a" start="1" end="b" direction="inc" step="1">
+                        <if expression="a*a + b*b = c*c">
+                            <then>
+                                <output expression="a&amp;&quot;,&quot;&amp;b&amp;&quot;,&quot;&amp;c" newline="True"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </for>
+                </for>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

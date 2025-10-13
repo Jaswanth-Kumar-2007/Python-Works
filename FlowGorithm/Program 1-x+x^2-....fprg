@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Program 1-x+x^2-..."/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-17 07:49:28 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MDc6Mzk6NTcgUE07MzcxNw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTc7MDc6NDk6MjggUE07MjszODI1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Calculation of 1-x+x^2-....&quot;" newline="True"/>
+            <output expression="&quot;Enter x&quot;" newline="True"/>
+            <declare name="x" type="Integer" array="False" size=""/>
+            <input variable="x"/>
+            <output expression="&quot;Enter n&quot;" newline="True"/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <declare name="Sum" type="Integer" array="False" size=""/>
+            <assign variable="Sum" expression="1"/>
+            <declare name="q" type="Real" array="False" size=""/>
+            <assign variable="q" expression="-x"/>
+            <declare name="Product" type="Real" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="p" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="n" direction="inc" step="1">
+                <assign variable="Product" expression="1"/>
+                <for variable="p" start="1" end="i" direction="inc" step="1">
+                    <assign variable="Product" expression="Product*q"/>
+                </for>
+                <assign variable="Sum" expression="Sum + Product"/>
+            </for>
+            <output expression="Sum" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

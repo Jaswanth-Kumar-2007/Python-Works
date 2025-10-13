@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Conversion of Degree to Radians"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-13 11:56:21 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTM7MDY6MTY6MDggUE07MzcwMw=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTM7MTE6NTY6MjEgUE07MjszODA3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Covert Angle to Radians&quot;" newline="True"/>
+            <declare name="Angle" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="1"/>
+            <for variable="Angle" start="0" end="360" direction="inc" step="1">
+                <output expression="&quot;The Angle in Degrees is &quot;&amp;Angle&amp;&quot;degrees and its Radian Value is &quot;&amp;(angle*pi)/180" newline="True"/>
+                <while expression="Angle/10 = i">
+                    <output expression="&quot;The Angle in Degrees is &quot;&amp;Angle&amp;&quot;degrees and its Sine Value is&quot; &amp;sin((angle*pi)/180)" newline="True"/>
+                    <assign variable="i" expression="i+1"/>
+                </while>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

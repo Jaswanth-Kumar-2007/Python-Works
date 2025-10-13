@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Check Prime No"/>
+        <attribute name="authors" value="Jaswanth Kumar"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-08-15 03:52:11 PM"/>
+        <attribute name="created" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTU7MDI6NDU6MjQgUE07MzcwMQ=="/>
+        <attribute name="edited" value="SmFzd2FudGggS3VtYXI7REVTS1RPUC04TDA4SklLOzIwMjUtMDgtMTU7MDM6NTI6MTEgUE07NDszODA3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Check Whether a Number is Prime or Not?&quot;" newline="True"/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter Number&quot;" newline="True"/>
+            <input variable="n"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="flag" type="Integer" array="False" size=""/>
+            <assign variable="flag" expression="0"/>
+            <if expression="n = 2">
+                <then>
+                    <output expression="&quot;Output &quot;&amp;n&amp;&quot; is Prime Number&quot;" newline="True"/>
+                </then>
+                <else>
+                    <for variable="i" start="2" end="n-1" direction="inc" step="1">
+                        <if expression="remainder(n,i) = 0">
+                            <then>
+                                <output expression="n&amp;&quot; is Not Prime Number&quot;" newline="True"/>
+                                <assign variable="flag" expression="1"/>
+                                <if expression="flag = 0">
+                                    <then>
+                                        <output expression="n&amp;&quot; is Prime Number&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <breakpoint expression="" always="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                    </for>
+                    <output expression="n&amp;&quot; is Prime Number&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="remainder" type="Integer" variable="r">
+        <parameters>
+            <parameter name="a" type="Integer" array="False"/>
+            <parameter name="b" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="r" type="Integer" array="False" size=""/>
+            <declare name="m" type="Integer" array="False" size=""/>
+            <declare name="q" type="Integer" array="False" size=""/>
+            <assign variable="m" expression="0"/>
+            <assign variable="q" expression="0"/>
+            <while expression="m &lt; a">
+                <assign variable="m" expression="m + b"/>
+                <assign variable="q" expression="q + 1"/>
+                <assign variable="r" expression="a-q*b"/>
+            </while>
+            <if expression="m = a">
+                <then>
+                    <assign variable="r" expression="0"/>
+                </then>
+                <else>
+                    <assign variable="q" expression="a+b-m"/>
+                    <assign variable="r" expression="a-q*b"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
