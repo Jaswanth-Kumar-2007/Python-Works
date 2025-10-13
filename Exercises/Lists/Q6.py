@@ -1,0 +1,1 @@
+# A list Contain Several Words . Create a new list with all characters used
