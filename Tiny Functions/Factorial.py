@@ -4,4 +4,8 @@ def factorial(n):
         res = res*i
     return res
 
-print(factorial(5))
+ans = []
+for i in range(1,20):
+    ans.append(factorial(i))
+
+print(ans)
