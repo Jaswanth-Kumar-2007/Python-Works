@@ -1,5 +1,5 @@
 # Base Class
-class Shape():
+class Shape:
     def __init__(self,color,thickness):
         self.color = color
 
