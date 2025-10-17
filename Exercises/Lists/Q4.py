@@ -1,15 +1,17 @@
-def Median(lst):
-    dic = {}
-    for i in lst:
-        count = 0
-        for j in lst:
-            if int(i) == int(j):
-                count += 1
-        dic[i] = count
-    s = max(dic.values())
-    for k,val in dic.items():
-        if dic[k] == s:
-            return k
-    
-nums = [1,2,2,2,3,3,2,3,3,3,4,5]
-print(Median(nums))
+def median_value(numbers):
+    # Create a copy to avoid changing original order
+    temp = sorted(numbers)
+    n = len(temp)
+    mid = n // 2
+
+    # If odd number of elements → middle element
+    if n % 2 != 0:
+        return temp[mid]
+    else:
+        # If even → average of middle two
+        return (temp[mid - 1] + temp[mid]) / 2
+
+# Example
+nums = [5, 1, 9, 3, 7]
+print("Median:", median_value(nums))
+print("Original list (unchanged):", nums)

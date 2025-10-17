@@ -1,12 +1,15 @@
-def bin_to_dec(num,sum,i):
-    if num == 0:
-        return 1
+def binary_to_decimal(binary):
+    # Base case: if binary is 0 or 1
+    if binary == 0:
+        return 0
     else:
-        s = num%10
-        sum = sum + (s*(2**i))
-        i = i + 1
-        num = num//10
-        return bin_to_dec(num,sum,i)
+        # Get last digit (LSB)
+        last_digit = binary % 10
+        # Remaining binary number
+        remaining = binary // 10
+        # Recursive formula: decimal = last_digit + 2 * (decimal of remaining)
+        return last_digit + 2 * binary_to_decimal(remaining)
 
-print(bin_to_dec(1011,0,0))
-
+# Example
+num = 1011
+print("Decimal value:", binary_to_decimal(num))
