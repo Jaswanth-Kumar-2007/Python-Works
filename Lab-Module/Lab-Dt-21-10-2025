@@ -1,0 +1,104 @@
+#PART - A
+
+class Queue:
+    def __init__(self):
+        self.items = []
+    
+    def insert(self,item):
+        self.items.append(item)
+        print("Matrix Squared and Inserted into Queue")
+        
+    def remove(self):
+        if len(self.items) != 0:
+            print("Removed from Queue:",self.items.pop(0))
+        else:
+            print("The queue is Empty")
+        
+    def display(self):
+        print("Current Queue:",self.items)
+
+# PART - B
+
+    def matrix_input(self):
+        global res_row
+        rows = int(input("Enter No. of Rows: "))
+        columns = int(input("Enter No. of Columns: "))
+        res_row = []
+        for i in range(rows):
+            res_col = []
+            for j in range(columns):
+                p = int(input(f"Enter the Value [{i}] [{j}]: "))
+                res_col.append(p)
+            res_row.append(res_col)
+        return res_row
+    
+# PART - C
+
+    #Square_Matrix
+
+    def square_matrix(self):
+        global res_row
+        res_square = []
+        for i in res_row:
+            temp_square = []
+            for j in i:
+                p = j**2
+                temp_square.append(p)
+            res_square.append(temp_square)
+        return res_square
+
+    #Transpose_Matrix
+
+    def transpose_matrix(self):
+        global res_row
+        res_transpose = []
+        for i in range(len(res_row[0])):
+            temp_transpose = []
+            for j in range(len(res_row)):
+                p = res_row[j][i]
+                temp_transpose.append(p)
+            res_transpose.append(temp_transpose)
+        print(res_transpose)
+    
+# PART - D
+
+# Create an Object of the Queue Class
+
+obj = Queue()
+
+# Aceept two Matrices from the User
+
+obj.matrix_input()
+
+# Compute the Square of each matrix using list Comprehensions
+
+# Insert both squared matrices into the queue
+
+obj.insert(obj.square_matrix())
+
+obj.display()
+
+obj.matrix_input()
+
+obj.insert(obj.square_matrix())
+
+obj.display()
+
+#Remove and Display Each Matrix using the queue methods
+
+obj.remove()
+
+obj.remove()
+
+obj.remove()
+
+
+        
+
+
+
+
+        
+            
+        
+        
