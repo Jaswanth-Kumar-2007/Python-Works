@@ -1,0 +1,126 @@
+# Q1 : Student Grade Analyzer
+ 
+class Student:
+    def __init__(self,name,marks):
+        self.name = name
+        self.marks = marks
+        
+    def average(self):
+        sum = 0
+        l = len(self.marks)
+        for i in self.marks:
+            sum += i
+        average = sum / l
+        return average
+    
+    def passed_subjects(self):
+        count = 0
+        for i in self.marks:
+            if i >= 40:
+                count += 1
+        return count
+    
+    def display_info(self):
+        print("Student :",self.name,"| Average :",self.average(),"| Passed Subjects :",self.passed_subjects())
+        
+                    
+#student1 = Student("Rohit",[25,32,45,34])
+
+#student1.display_info()
+
+# Q2 : Library Book Filter
+
+class Book:
+    def __init__(self,title,author,category):
+        self.title = title
+        self.author = author
+        self.category = category
+        
+class Library:
+    def __init__(self):
+        self.book = []
+        
+    def add_book(self,boo):
+        self.book.append(boo)
+        
+    def filter_category(self,category):
+        found = False
+        for i in self.book:
+            if i.category == category:
+                print(i.title,"|",i.author,"|",i.category)
+                print(type(i))
+                found = True
+        if not found:
+            print("No books found in this category.")
+        
+
+#b1 = Book(z"The A","B","Fiction")
+#b2 = Book("The C","D","Comedy")
+
+#s = Library()
+#s.add_book(b1)
+#s.add_book(b2)
+
+#s.filter_category("Comedy")
+
+# Q3 : Employee Salary Increment
+
+class Employee:
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+        
+class Company(Employee):
+    def __init__(self):
+        self.employ = []
+        
+    def add_employ(self,employ):
+        self.employ.append(employ)
+        
+    def increment(self,num):
+        p = 100 + num
+        for i in self.employ:
+            i.salary = (i.salary * p)/100
+            print(i.name,"|",i.salary)
+        
+#e1 = Employee("A",4500)
+#e2 = Employee("B",5460)
+
+#p = Company()
+
+#p.add_employ(e1)
+#p.add_employ(e2)
+
+#p.increment(10)
+            
+# Q4 : Matrix Flatten and Transformation
+
+class Matrix:
+    def __init__(self,lst):
+        self.lst = lst
+        
+    def flatten_list(self):
+        self.flatten = []
+        for i in self.lst:
+            for j in i:
+                self.flatten.append(j)
+        print(self.flatten)
+            
+    def square_list(self):
+        self.square = []
+        for i in self.flatten:
+            p = i**2
+            self.square.append(p)
+        print(self.square)
+            
+m1 = Matrix([[1,2],[3,4]])
+
+m1.flatten_list()
+
+m1.square_list()
+
+
+         
+        
+    
+             
