@@ -1,0 +1,105 @@
+# Q1 : Movie Rating System
+
+class Movie:
+    def __init__(self,title,genre,ratings):
+        self.title = title
+        self.genre = genre
+        self.ratings = ratings
+        
+    def average_rating(self):
+        average = sum(self.ratings) / len(self.ratings)
+        return average
+        
+    def filter_rating(self,min_rating):
+        self.rating = []
+        for i in self.ratings:
+            if i >= min_rating:
+                self.rating.append(i)
+        return self.rating
+    
+    def display_info(self):
+        print("Movie : " , self.title , "| Average Rating :" , self.average_rating() , "| High Ratings : " , self.filter_rating(9) )
+        
+#m1 = Movie("Doctor","Comedy",[9,10,9,8])
+
+#m1.display_info()
+        
+# Q2 : Weather Data Processor
+
+class Weather:
+    def collect_data(self):
+        self.row_data = []
+        for i in range(1,8):
+            col_data = []
+            for j in range(1,4):
+                p = int(input(f"Enter Day {i} , City {j} : "))
+                col_data.append(p)
+            self.row_data.append(col_data)
+    
+    def city_average(self):
+        self.average = []
+        for i in range(3):
+            sum = 0
+            for j in range(7):
+                sum += self.row_data[j][i]
+            self.average.append(sum)
+            
+    def flatten_data(self):
+        self.flatten = []
+        for i in range(3):
+            for j in range(7):
+                self.flatten.append(self.row_data[j][i])
+        print(self.flatten())
+        
+#p = Weather()
+#p.collect_data()
+#print("City 1",p.row_data[0])
+#print("City 2",p.row_data[1])
+#print("City 3",p.row_data[2])
+#p.flatten_data()
+
+# Q3 : Inventory Discount Manager
+
+class Product:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+        
+class Inventory:
+    def __init__(self):
+        self.product = []
+        
+    def add_product(self,pro):
+        self.product.append(pro)
+        
+    def apply_discount(self,percent):
+        num = 100 - percent
+        self.discount = []
+        for i in self.product:
+            i.price = (i.price * num)/100
+            print(f"After Disocunt : {i.name} | {i.price}")
+            
+    def filter_affordable(self,limit):
+        for i in self.product:
+            if i.price <= limit:
+                print(f"After Filter : {i.name} | {i.price}")
+        
+#p1 = Product("Pen",123)
+#p2 = Product("Chicken",450)
+
+#i = Inventory()
+
+#i.add_product(p1)
+#i.add_product(p2)
+
+#i.apply_discount(10)
+#i.filter_affordable(200)
+                
+
+# Q4: 
+            
+            
+                
+                
+            
+        
