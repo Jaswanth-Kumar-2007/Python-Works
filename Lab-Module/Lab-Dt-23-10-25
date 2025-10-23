@@ -96,7 +96,88 @@ class Inventory:
 #i.filter_affordable(200)
                 
 
-# Q4: 
+# Q4: Matrix Diagonal Oprators
+
+class Matrix:
+    def matrix_input(self):
+        self.rows = int(input("Enter No. of Rows: "))
+        self.columns = int(input("Enter No. of Columns: "))
+        if self.rows == self.columns:
+            self.res_row = []
+            for i in range(self.rows):
+                res_col = []
+                for j in range(self.columns):
+                    p = int(input(f"Enter the Value [{i}] [{j}]: "))
+                    res_col.append(p)
+                self.res_row.append(res_col)
+            return self.res_row
+        else:
+            print("Not Applicable")
+
+    def primary_diagonal(self):
+        self.primary_diagonal = []
+        for i in range(self.rows):
+            self.primary_diagonal.append(self.res_row[i][i])
+        print(self.primary_diagonal)
+    
+    def secondary_diagonal(self):
+        self.secondary_diagonal = []
+        for j in range(self.rows):
+            self.secondary_diagonal.append(self.res_row[abs(self.rows-j-1)][j])
+        print(self.secondary_diagonal)
+    
+    def sum_diagonal(self):
+        self.sum = 0
+        for i in self.primary_diagonal:
+            self.sum += i
+        for j in self.secondary_diagonal:
+            self.sum += j
+        print(self.sum)
+    
+#m = Matrix()
+#m.matrix_input()
+#m.primary_diagonal()
+#m.secondary_diagonal()
+#m.sum_diagonal()
+        
+
+# Q5: Bank Loan Evaluator
+
+class Customer:
+    all_customers = []   # class variable to track all customers
+    
+    def __init__(self, name, loans):
+        self.name = name
+        self.loans = loans
+        Customer.all_customers.append(self)
+        
+    def total_loan(self):
+        return sum(self.loans)
+    
+    def high_value_loans(cls, limit):
+        for cust in cls.all_customers:
+            if cust.total_loan() >= limit:
+                print(f"{cust.name} : {cust.total_loan()}")
+                
+    def display_info(self):
+        print(self.name,"--> ",self.total_loan())
+            
+#c1 = Customer("A",[23,21,17])
+#c2 = Customer("B",[11,23,18])
+
+#c2.display_info()
+#c2.high_value_loans(54)
+
+
+        
+     
+    
+    
+    
+    
+    
+        
+    
             
             
                 
