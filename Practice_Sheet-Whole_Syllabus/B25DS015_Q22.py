@@ -6,7 +6,6 @@ class Temperature:
         return float(((self.num * 5 )/9)-32)
 
     @classmethod
-
     def from_fahrenheit(cls,temp):
         return cls((temp-32)*5/9)
 

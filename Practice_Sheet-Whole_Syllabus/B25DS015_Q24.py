@@ -1,20 +1,24 @@
 class Time:
-    def __init__(h,m):
-        self.h = h
-        self.m = m
-        if self.m > 30:
-            self.p = self.h*3600+(60-self.m)*60
-            return self.p
-        else:
-            self.p = self.h*3600+self.m*60
-            return self.p
+
+    def __init__(self, h, m):
+        total_m = h * 60 + m
+        self.h = total_m // 60
+        self.m = total_m % 60
+
+    def __add__(self, rem):
+        return Time(self.h + rem.h, self.m + rem.m)
+
+    def __sub__(self, rem):
+        t1 = self.h * 60 + self.m
+        t2 = rem.h * 60 + rem.m
+        diff = max(0, t1 - t2)
+        return Time(0, diff)
 
     def display(self):
-        r = self.p//3600
-        s = self.p%3600
-        return f"{r}:{s}"
+        return f"{self.h:02d}:{self.m:02d}"
 
 t1 = Time(2,45)
 t2 = Time(1,30)
-(t1 + t2).display()
-(t1 - t2).display()
+print((t1 + t2).display()) 
+print((t1 - t2).display()) 
+print(Time(0,90).display()) 

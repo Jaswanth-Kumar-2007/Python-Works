@@ -1,14 +1,10 @@
 def invert_dict(d):
     res = {}
-    for key,value in d.items():
-        res1 = []
-        for i,j in d.items():
-            if d[key] == d[i]:
-                res1.append(i)
-            else:
-                res[value] = key
-        res[j] = res1
+    for key, value in d.items():
+        if value not in res:
+            res[value] = [key]
+        else:
+            res[value].append(key)
     return res
 
-print(invert_dict({'a':1,'b':2,'d':1,'f':5}))
-
+print(invert_dict({'a': 1, 'b': 2, 'd': 1, 'f': 5,'c':1}))
