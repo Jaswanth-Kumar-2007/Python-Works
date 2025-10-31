@@ -1,14 +1,12 @@
 def subset_sum(nums,target):
-    for i in range(2**len(nums)):
-        s= 0
-        k = i
-        for j in range(len(nums)):
-            if k<<1:
-                s += nums[len(nums)-j-1]
-    
-    if s == target:
+    if target == 0:
         return True
-    else:
+    if not nums:
         return False
+    n = nums[0]
+    include = subset_sum(nums[1:],target-n)
+    exclude = subset_sum(nums[1:],target)
+    return include or exclude
 
-print(subset_sum([3,34,4,12,5,2],9))
+print(subset_sum([3,34,4,12,5,2],9))   
+print(subset_sum([1,3,3],7))
