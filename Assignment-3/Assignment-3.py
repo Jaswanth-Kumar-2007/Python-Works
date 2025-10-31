@@ -1,22 +1,66 @@
 # Object - Oriented Focus
+Phone_Directory = {}
 
 class Phone:
-    register_phone = []
     
-    def __init__(self,phone_number,owner_name,contacts):
+    def __init__(self,phone_number,owner_name):
         self.phone_number = phone_number
         self.owner_name = owner_name
-        self.contacts = contacts
-        self.call_history = {}
-        Phone.register_phone.append(phone_number)
+        self.contacts = {}
+        self.call_history = []
+        self.is_calling = False
+        self.is_receiving = False
+        self.is_in_call = False
+        self.current_peer = None
+        self.call_start_time = 0
+        Phone_Directory[self.phone_number] = self
+        print(f"Phone Created for {self.name} ({self.phone_number})")
         
     def add_contact(self,name,phone_number):
-        self.contacts[name] = phone_number
+        self.contacts[self.phone_number] = self.owner_name
         print("Contact Added Successfully")
-        
+
+    def update_contact(self,phonenumber,new_name):
+        if phonenumber in self.contacts:
+            self.contacts[phonenumber] = new_name
+        else:
+            print("Contact Not Exist ")
+    
+    def delete_contact(self,phonenumber):
+        if phonenumber in self.contacts:
+            self.contacts.pop(phonenumber)
+        else:
+            print("Contact Not Exist")
+
+    def search_by_number(self,phonenumber):
+        if phonenumber in self.contacts:
+            print(self.contacts[phonenumber])
+        else:
+            print("Contact Not Exist")
+
+    def search_by_name(self,name):
+        for key,value in self.contacts.items():
+            if value == name:
+                print(key)
+    
+    def wor_to_let(p):
+        res = []
+        for i in p.split():
+            res.append(i)
+        return res
+
+    def search_by_keyword(self,query):
+        l = wor_to_let(query)
+        for key,value in self.contacts.items():
+            if l in wor_to_let(key) or l in wor_to_let(value):
+                print(key,value)
+        else:
+            print("Search Not Exist")
+
+
     def start_call(self,name,phone_number):
         if phone_number in Phone.register_phone:
-            self.call_history[name] = phone_number
+            self.call_history.append(phone_number)
             print("Call Started Successfully")
         else:
             print("Phone Number is Not Registered")
