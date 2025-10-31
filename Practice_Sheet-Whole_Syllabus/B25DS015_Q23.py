@@ -5,14 +5,14 @@ class BankAccount:
 
     def deposit(self,amount):
         self._balance += amount
-        #return self._balance
+        return self._balance
         
     def withdraw(self,amount):
         if amount > self._balance:
             return "Insufficient funds"
         else:
             self._balance -= amount
-            #return self._balance
+            return self._balance
 
     def display_balance(self):
         return f"Balance : {self._balance}"
