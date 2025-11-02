@@ -1,11 +1,13 @@
 # Object - Oriented Focus
 Phone_Directory = {}
 
+import time
+
 class Phone:
     
-    def __init__(self,phone_number,owner_name):
-        self.phone_number = phone_number
-        self.owner_name = owner_name
+    def __init__(self,number,name):
+        self.number = number
+        self.name = name
         self.contacts = {}
         self.call_history = []
         self.is_calling = False
@@ -13,32 +15,41 @@ class Phone:
         self.is_in_call = False
         self.current_peer = None
         self.call_start_time = 0
-        Phone_Directory[self.phone_number] = self
-        print(f"Phone Created for {self.name} ({self.phone_number})")
-        
-    def add_contact(self,name,phone_number):
-        self.contacts[self.phone_number] = self.owner_name
-        print("Contact Added Successfully")
+        Phone_Directory[self.number] = self
+        print(f"Created Phone for {self.name} ({self.number})")
 
-    def update_contact(self,phonenumber,new_name):
-        if phonenumber in self.contacts:
-            self.contacts[phonenumber] = new_name
+    def is_busy(self):
+        return self.is_calling or self.is_receiving or self.is_in_call
+
+    def add_contact(self,number,name):
+        if number in self.contacts:
+            print("Already Number Exist")
         else:
-            print("Contact Not Exist ")
+            self.contacts[number] = name
+            print("Contact Added Successfully")
     
-    def delete_contact(self,phonenumber):
+    def get_contact_name(self,number):
+        print(f"self.contacts[number]")
+
+    def update_contact(self,number,new_name):
+        if number in self.contacts:
+            self.contacts[number] = new_name
+        else:
+            print("Contact Not Exist")
+    
+    def delete_contact(self,number):
         if phonenumber in self.contacts:
-            self.contacts.pop(phonenumber)
+            self.contacts.pop(number)
         else:
             print("Contact Not Exist")
 
-    def search_by_number(self,phonenumber):
-        if phonenumber in self.contacts:
-            print(self.contacts[phonenumber])
+    def search_by_number(self,number):
+        if number in self.contacts:
+            print(self.contacts[number])
         else:
             print("Contact Not Exist")
 
-    def search_by_name(self,name):
+    def search_by_name(self,query):
         for key,value in self.contacts.items():
             if value == name:
                 print(key)
@@ -57,21 +68,41 @@ class Phone:
         else:
             print("Search Not Exist")
 
+    def show_status(self):
+        if self.is_calling:
+            print(f"{self.name} is Started Call")
+        elif self.is_in_call:
+            print(f"{self.name} is Busy")
+        elif self.is_receiving:
+            print(f"{self.name} is Receiving Call")
 
-    def start_call(self,name,phone_number):
-        if phone_number in Phone.register_phone:
-            self.call_history.append(phone_number)
-            print("Call Started Successfully")
+    def place_call(self,receiver_number):
+        if receiver_number in Phone_Directory:
+            self.is_calling = True
         else:
-            print("Phone Number is Not Registered")
+            print("Receiver Number Not Exist")
         
-    def display_contact(self):
-        print(f"{self.contacts}")
-        
-    def display_history(self):
-        print(f"{self.call_history}")
-        
+    def receive_call(self,caller_object):
+        if not self.is_busy():
+            self.is_receiving = True
+            self.current_peer = caller_object
+            print(f"{self.name} is Receiving a Call")
+        else:
+            print(f"{self,name} is in Call")
 
+    def accept_call(self):
+        self.is_in_call = True
+        print(f"{self.name} is in Call")
+
+    def end_call(self):
+        self.is_in_call = False
+        print(f"{self.name} is Ended Call")
+
+    def _add_to_history(self,peer,start_time,end_time,call_type):
+        pass
+
+
+"""     
 p1 = Phone(7670841203,"KJK",{"MS":9391106103,"SS":9398012291})
 p2 = Phone(1234567890,"A",{})
 
@@ -82,7 +113,7 @@ p1.display_contact()
 p1.start_call("B",1234567890)
 
 p1.display_history()
-
+"""
 
 
         
