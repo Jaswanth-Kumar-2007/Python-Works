@@ -1,7 +1,5 @@
 # ✅ Phone Simulation System — GitHub Checklist
 
-## 🧩 Object-Oriented Focus
-
 - [ ] __init__
 - [ ] is_busy
 - [ ] add_contact
