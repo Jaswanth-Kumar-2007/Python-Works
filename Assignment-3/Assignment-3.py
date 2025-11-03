@@ -1,4 +1,3 @@
-# Object - Oriented Focus
 Phone_Directory = {}
 
 import time
@@ -22,38 +21,53 @@ class Phone:
         return self.is_calling or self.is_receiving or self.is_in_call
 
     def add_contact(self,number,name):
+        print(f"Running add_contact ({number} , {name})....")
         if number in self.contacts:
-            print("Already Number Exist")
+            print("Error")
+        elif number == self.number:
+            print("Error")
+        elif number in Phone_Directory:
+            print("Error")
         else:
             self.contacts[number] = name
-            print("Contact Added Successfully")
+            print("Success")
     
     def get_contact_name(self,number):
-        print(f"self.contacts[number]")
+        return self.contacts,get(number,f"Unknown ({number})")
 
     def update_contact(self,number,new_name):
+        print(f"Running Update_Contact ({number} , {new_name})....")
         if number in self.contacts:
             self.contacts[number] = new_name
+            print("Sucess")
         else:
-            print("Contact Not Exist")
+            print("Error")
     
     def delete_contact(self,number):
+        print(f"Running delete_contact({number})....")
         if phonenumber in self.contacts:
             self.contacts.pop(number)
+            print("Success")
         else:
-            print("Contact Not Exist")
+            print("Error")
 
     def search_by_number(self,number):
+        print(f"Searching by number: {number}....")
         if number in self.contacts:
             print(self.contacts[number])
+            print("Found")
         else:
-            print("Contact Not Exist")
+            print("Not Found")
 
     def search_by_name(self,query):
+        l = len(query)
+        print(f"Searching by name: {query}....")
         for key,value in self.contacts.items():
-            if value == name:
+            if value[0:l].lower() == name[0:l].lower():
                 print(key)
-    
+
+# ---- Search By Key Word ---- #
+       
     def wor_to_let(p):
         res = []
         for i in p.split():
@@ -68,52 +82,71 @@ class Phone:
         else:
             print("Search Not Exist")
 
+# ---- Search by Key Word ---- #
+
     def show_status(self):
         if self.is_calling:
-            print(f"{self.name} is Started Call")
+            print(f"Status for {self.name}: Calling")
         elif self.is_in_call:
-            print(f"{self.name} is Busy")
+            print(f"Status for {self.name}: In Call")
         elif self.is_receiving:
-            print(f"{self.name} is Receiving Call")
+            print(f"Status for {self.name}: Incoming Call")
+        else:
+            print(f"Status for {self.name}: Idle")
 
     def place_call(self,receiver_number):
+        print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
-            self.is_calling = True
+            if not receiver_number.is_busy and not self.is_busy:
+                self.is_calling = True
+                receiver_number.receive_call = True
         else:
             print("Receiver Number Not Exist")
         
     def receive_call(self,caller_object):
-        if not self.is_busy():
-            self.is_receiving = True
-            self.current_peer = caller_object
-            print(f"{self.name} is Receiving a Call")
-        else:
-            print(f"{self,name} is in Call")
+        print(f"{self.name} is receiving a call from {caller_object.name}....")
+        self.is_receiving = True
+        self.current_peer = caller_object
 
     def accept_call(self):
-        self.is_in_call = True
-        print(f"{self.name} is in Call")
+        if self.is_receiving:
+            self.is_in_call = True
+            self.current_peer.is_calling = False
+            self.current_peer.is_in_call = True
+            self.call_start_time = time.Time()
+            self.current_peer.call_start_time = self.call_start_time
+            print(f"{self.name} accepted the call")
+
+#------End Call-------#
 
     def end_call(self):
-        self.is_in_call = False
-        print(f"{self.name} is Ended Call")
+        print(f"{self.name} is ending the call activity")
+        if self.is_calling:
+            self.is_calling = False
+            self.current_peer.is_receiving = False
+            print("Log Dialled (0 Duration) for self,missed for peer")
+        elif self.is_receiving:
+            self.is_receiving = False
+            self.current_peer.is_calling = False
+            print("Log missed for self, rejected for peer")
+        elif self.is_in_call:
+            self.is_in_call = False
+            self.current_peer.is_in_call = False
+            self.call_end_time = time.Time()
+            _add_to_history()
+            self.current_peer = None
+
+#-------End Call-------#
 
     def _add_to_history(self,peer,start_time,end_time,call_type):
-        pass
+        res = {}
+        res[peer] = self.caller_object
+        res[start_time] = self.call_start_time
+        res[end_time] = self.call_end_time
+        self.call_history.append(res)
 
 
-"""     
-p1 = Phone(7670841203,"KJK",{"MS":9391106103,"SS":9398012291})
-p2 = Phone(1234567890,"A",{})
 
-p1.add_contact("KS",9391111456)
-
-p1.display_contact()
-
-p1.start_call("B",1234567890)
-
-p1.display_history()
-"""
 
 
         
