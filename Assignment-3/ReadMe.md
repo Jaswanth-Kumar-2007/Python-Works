@@ -1,6 +1,6 @@
 # ✅ Phone Simulation System — GitHub Checklist
 
-- [ ] __init__
+- [x] __init__
 - [ ] is_busy
 - [ ] add_contact
 - [ ] get_contact_name
