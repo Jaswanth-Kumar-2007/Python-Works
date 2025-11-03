@@ -26,11 +26,12 @@ class Phone:
             print("Error")
         elif number == self.number:
             print("Error")
-        elif number in Phone_Directory:
-            print("Error")
         else:
-            self.contacts[number] = name
-            print("Success")
+            if number in Phone_Directory:
+                self.contacts[number] = name
+                print("Success")
+            else:
+                print("Error")
     
     def get_contact_name(self,number):
         return self.contacts,get(number,f"Unknown ({number})")
@@ -63,8 +64,8 @@ class Phone:
         l = len(query)
         print(f"Searching by name: {query}....")
         for key,value in self.contacts.items():
-            if value[0:l].lower() == name[0:l].lower():
-                print(key)
+            if value[0:l].lower() == query.lower():
+                print(key ,"-",value)
 
 # ---- Search By Key Word ---- #
        
@@ -97,9 +98,8 @@ class Phone:
     def place_call(self,receiver_number):
         print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
-            if not receiver_number.is_busy and not self.is_busy:
+            if self.is_busy:
                 self.is_calling = True
-                receiver_number.receive_call = True
         else:
             print("Receiver Number Not Exist")
         
@@ -147,6 +147,24 @@ class Phone:
 
 
 
+# -------- Testing Case ---------#
+if __name__ == "__main__": 
+    print("---Interactive Phone Test---")
+    alice = Phone("111","Alice")
+    bob = Phone("222", "Bob") 
 
+    print("\n---Testing Contacts---")
+    alice.add_contact("222","Bobby")
+    alice.add_contact("333", "Charlie") 
+    alice.add_contact("111", "Me") 
+    alice.update_contact("222", "Bob")
 
-        
+    print("\n---Testing Search---")
+    alice.search_by_number("222")
+    alice.search_by_name("Bo")
+
+    print("\n---Testing Call Scenario---")
+    alice.place_call("222")
+    alice.show_status()
+    
+
