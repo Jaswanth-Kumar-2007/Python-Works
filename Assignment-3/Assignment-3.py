@@ -34,7 +34,10 @@ class Phone:
                 print("Error")
     
     def get_contact_name(self,number):
-        return self.contacts,get(number,f"Unknown ({number})")
+        if number in Phone_Directory:
+            return Phone_Directory[number].name
+        else:
+            return f"Unknown {number}"
 
     def update_contact(self,number,new_name):
         print(f"Running Update_Contact ({number} , {new_name})....")
@@ -102,11 +105,14 @@ class Phone:
     def place_call(self,receiver_number):
         print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
-            if self.is_busy():
+            if not self.is_busy() or not p.is_busy:
                 self.is_calling = True
                 receiver = Phone_Directory[receiver_number]
                 self.current_peer = receiver
+                receiver.receive_call(self)
                 Phone_Directory[receiver_number].is_receiving = True
+            else:
+                print("Error")
         else:
             print("Receiver Number Not Exist")
         
@@ -116,15 +122,16 @@ class Phone:
         self.current_peer = caller_object
 
     def accept_call(self):
-        if self.is_receiving():
-            self.is_calling = False
-            self.is_in_call = True
-            caller = self.current_peer
-            caller.is_calling = False
-            caller.is_in_call = True
-            self.call_start_time = time.Time()
-            caller.call_start_time = self.call_start_time
-            print(f"{self.name} accepted the call")
+        if self.is_receiving:
+            if self.current_peer.is_calling:
+                self.is_calling = False
+                self.is_in_call = True
+                self.is_receiving = False
+                self.current_peer.is_calling = False
+                self.current_peer.is_in_call = True
+                self.call_start_time = time.time()
+                self.current_peer.call_start_time = self.call_start_time
+                print(f"{self.name} accepted the call")
 
 #------End Call-------#
 
@@ -138,16 +145,20 @@ class Phone:
             print("Log missed for self, rejected for peer")
         elif self.is_in_call:
             self.is_in_call = False
+            self.current_peer.is_in_call = False
             self.call_end_time = time.time()
-            _add_to_history()
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_end_time)
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_end_time)
 
 #-------End Call-------#
 
-    def _add_to_history(self,peer,start_time,end_time,call_type):
+    def _add_to_history(self,peer,start_time,end_time):
         res = {}
-        res[peer] = self.caller_object
-        res[start_time] = self.call_start_time
-        res[end_time] = self.call_end_time
+        peer_name = self.get_contact_name(peer.number)
+        res["Name"] = peer_name
+        t = start_time - end_time
+        res["Call Duration"] = f"{abs(int(t))}s"
+        res["Number"] = peer.number
         self.call_history.append(res)
 
 
@@ -177,7 +188,7 @@ if __name__ == "__main__":
     bob.show_status()
     print(".....simulating a 2-second call...")
 
-    time.sleep(2)
+    time.sleep(10)
 
     alice.end_call()
 
