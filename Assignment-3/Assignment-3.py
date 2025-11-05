@@ -104,6 +104,7 @@ class Phone:
             print(f"Status for {self.name}: Idle")
 
     def place_call(self,receiver_number,timestamp):
+        timestamp = int(timestamp)
         print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
             receiver = Phone_Directory[receiver_number]
@@ -138,24 +139,25 @@ class Phone:
 #------End Call-------#
 
     def end_call(self,timestamp):
+        timestamp = int(timestamp)
         self.call_end_time = timestamp
         self.current_peer.call_end_time = timestamp
-        print(f"{self.name} is ending the call activity")
+        print(f"{self.name} is ending the call activity\n")
         if self.is_calling:
             self.is_calling = False
-            self._add_to_history(self.current_peer,None,None,"Dialled")
-            self.current_peer._add_to_history(self,None,None,"Missed")
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_start_time,"Dialled")
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_start_time,"Missed")
         elif self.is_receiving:
             self.is_receiving = False
-            self._add_to_history(self.current_peer,None,None,"Missed")
-            self.current_peer._add_to_history(self,None,None,"Rejected")
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_start_time,"Missed")
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_start_time,"Rejected")
         elif self.is_in_call:
             if self.current_peer.is_receiving:
-                call_type_self = "dialled"
-                call_type_peer = "received"
+                call_type_self = "Dialled"
+                call_type_peer = "Received"
             else:
-                call_type_self = "received"
-                call_type_peer = "dialled"
+                call_type_self = "Received"
+                call_type_peer = "Dialled"
             self.current_peer._add_to_history(self,self.call_start_time,self.call_end_time,call_type_self)
             self._add_to_history(self.current_peer,self.call_start_time,self.call_end_time,call_type_peer)
             self.is_in_call = False
@@ -180,7 +182,7 @@ class Phone:
         set1 = set()
         for i in self.call_history:
             for key,value in i.items():
-                if i["Call Type"] == "dialled":
+                if i["Call Type"] == "Dialled":
                     set1.add(i["Name"])
         print(len(set1))
         #Average Call Duration
@@ -188,7 +190,7 @@ class Phone:
         list1 = []
         for i in self.call_history:
             for key,value in i.items():
-                if i["Call Type"] in ["dialled","received"] and int(i["Call Duration"])>0:
+                if i["Call Type"] in ["Dialled","Received"] and int(i["Call Duration"])>0:
                     list1.append(int(i["Call Duration"]))
         if len(list1) != 0:
             print(sum(list1)/len(list1))
@@ -196,7 +198,7 @@ class Phone:
         print("Most Frequently Called Number(s):....")
         dict1 = {}
         for i in self.call_history:
-            if i["Call Type"] == "dialled":
+            if i["Call Type"] == "Dialled":
                 if i["Name"] in dict1:
                     dict1[i["Name"]] += 1
                 else:
