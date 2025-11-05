@@ -103,13 +103,12 @@ class Phone:
         else:
             print(f"Status for {self.name}: Idle")
 
-    def place_call(self,receiver_number,timestamp):
-        timestamp = int(timestamp)
+    def place_call(self,receiver_number):
         print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
             receiver = Phone_Directory[receiver_number]
             if not self.is_busy() or not receiver.is_busy:
-                self.call_start_time = timestamp
+                self.call_start_time = time.time()
                 self.is_calling = True
                 self.current_peer = receiver
                 receiver.receive_call(self)
@@ -124,7 +123,7 @@ class Phone:
         self.is_receiving = True
         self.current_peer = caller_object
 
-    def accept_call(self,timestamp):
+    def accept_call(self):
         if self.is_receiving:
             if self.current_peer.is_calling:
                 self.is_calling = False
@@ -132,16 +131,15 @@ class Phone:
                 self.is_receiving = False
                 self.current_peer.is_calling = False
                 self.current_peer.is_in_call = True
-                self.call_start_time = timestamp
+                self.call_start_time = time.time()
                 self.current_peer.call_start_time = self.call_start_time
                 print(f"{self.name} accepted the call")
 
 #------End Call-------#
 
-    def end_call(self,timestamp):
-        timestamp = int(timestamp)
-        self.call_end_time = timestamp
-        self.current_peer.call_end_time = timestamp
+    def end_call(self):
+        self.call_end_time = time.time()
+        self.current_peer.call_end_time = time.time()
         print(f"{self.name} is ending the call activity\n")
         if self.is_calling:
             self.is_calling = False
@@ -169,7 +167,7 @@ class Phone:
         res = {}
         peer_name = self.get_contact_name(peer.number)
         res["Name"] = peer_name
-        t = self.call_end_time - self.call_start_time
+        t = end_time - start_time
         res["Call Duration"] = f"{abs(int(t))}"
         res["Number"] = peer.number
         res["Call Type"] = call_type
@@ -211,6 +209,66 @@ class Phone:
         else:
             print("No Dialled Numbers")
 
+    def place_call(self,receiver_number,timestamp):
+        timestamp = int(timestamp)
+        print(f"{self.name} is attempting to call {receiver_number}....")
+        if receiver_number in Phone_Directory:
+            receiver = Phone_Directory[receiver_number]
+            if not self.is_busy() or not receiver.is_busy:
+                self.call_start_time = timestamp
+                self.is_calling = True
+                self.current_peer = receiver
+                receiver.receive_call(self)
+                Phone_Directory[receiver_number].is_receiving = True
+            else:
+                print("Error")
+        else:
+            print("Receiver Number Not Exist")
+        
+    def receive_call(self,caller_object):
+        print(f"{self.name} is receiving a call from {caller_object.name}....")
+        self.is_receiving = True
+        self.current_peer = caller_object
+
+    def accept_call(self,timestamp):
+        if self.is_receiving:
+            if self.current_peer.is_calling:
+                self.is_calling = False
+                self.is_in_call = True
+                self.is_receiving = False
+                self.current_peer.is_calling = False
+                self.current_peer.is_in_call = True
+                self.call_start_time = timestamp
+                self.current_peer.call_start_time = timestamp
+                print(f"{self.name} accepted the call")
+
+#------End Call-------#
+
+    def end_call(self,timestamp):
+        timestamp = int(timestamp)
+        self.call_end_time = timestamp
+        self.current_peer.call_end_time = timestamp
+        print(f"{self.name} is ending the call activity\n")
+        if self.is_calling:
+            self.is_calling = False
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_start_time,"Dialled")
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_start_time,"Missed")
+        elif self.is_receiving:
+            self.is_receiving = False
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_start_time,"Missed")
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_start_time,"Rejected")
+        elif self.is_in_call:
+            if self.current_peer.is_receiving:
+                call_type_self = "Dialled"
+                call_type_peer = "Received"
+            else:
+                call_type_self = "Received"
+                call_type_peer = "Dialled"
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_end_time,call_type_self)
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_end_time,call_type_peer)
+            self.is_in_call = False
+            self.current_peer.is_in_call = False
+
 def run_simulation(filename):
     print("----Starting Phone Simulation ---")
 
@@ -245,9 +303,9 @@ def run_simulation(filename):
     for phone in Phone_Directory.values():
         phone.print_analysis()
 
-run_simulation("C:\Projects\JK Projects\Python-Works\Python-Works\Assignment-3\commands.txt")
+#run_simulation("C:\Projects\JK Projects\Python-Works\Python-Works\Assignment-3\commands.txt")
 
-"""  
+
 # -------- Testing Case ---------#
 if __name__ == "__main__": 
     print("---Interactive Phone Test---")
@@ -285,7 +343,7 @@ if __name__ == "__main__":
     print(f"Bob's History: {bob.call_history}")
     alice.print_analysis()
     bob.print_analysis()
-"""
+
 
 
 
