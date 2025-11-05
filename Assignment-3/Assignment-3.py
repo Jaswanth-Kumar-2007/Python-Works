@@ -14,6 +14,7 @@ class Phone:
         self.is_in_call = False
         self.current_peer = None
         self.call_start_time = 0
+        self.call_end_time = 0
         Phone_Directory[self.number] = self
         print(f"Created Phone for {self.name} ({self.number})")
 
@@ -43,13 +44,13 @@ class Phone:
         print(f"Running Update_Contact ({number} , {new_name})....")
         if number in self.contacts:
             self.contacts[number] = new_name
-            print("Sucess")
+            print("Success")
         else:
             print("Error")
     
     def delete_contact(self,number):
         print(f"Running delete_contact({number})....")
-        if phonenumber in self.contacts:
+        if number in self.contacts:
             self.contacts.pop(number)
             print("Success")
         else:
@@ -105,10 +106,10 @@ class Phone:
     def place_call(self,receiver_number,timestamp):
         print(f"{self.name} is attempting to call {receiver_number}....")
         if receiver_number in Phone_Directory:
-            if not self.is_busy() or not p.is_busy:
+            receiver = Phone_Directory[receiver_number]
+            if not self.is_busy() or not receiver.is_busy:
                 self.call_start_time = timestamp
                 self.is_calling = True
-                receiver = Phone_Directory[receiver_number]
                 self.current_peer = receiver
                 receiver.receive_call(self)
                 Phone_Directory[receiver_number].is_receiving = True
@@ -137,33 +138,76 @@ class Phone:
 #------End Call-------#
 
     def end_call(self,timestamp):
+        self.call_end_time = timestamp
+        self.current_peer.call_end_time = timestamp
         print(f"{self.name} is ending the call activity")
         if self.is_calling:
             self.is_calling = False
-            print("Log Dialled (0 Duration) for self,missed for peer")
+            self._add_to_history(self.current_peer,None,None,"Dialled")
+            self.current_peer._add_to_history(self,None,None,"Missed")
         elif self.is_receiving:
             self.is_receiving = False
-            print("Log missed for self, rejected for peer")
+            self._add_to_history(self.current_peer,None,None,"Missed")
+            self.current_peer._add_to_history(self,None,None,"Rejected")
         elif self.is_in_call:
+            if self.current_peer.is_receiving:
+                call_type_self = "dialled"
+                call_type_peer = "received"
+            else:
+                call_type_self = "received"
+                call_type_peer = "dialled"
+            self.current_peer._add_to_history(self,self.call_start_time,self.call_end_time,call_type_self)
+            self._add_to_history(self.current_peer,self.call_start_time,self.call_end_time,call_type_peer)
             self.is_in_call = False
             self.current_peer.is_in_call = False
-            self.call_end_time = time.time()
-            self.current_peer._add_to_history(self,self.call_start_time,self.call_end_time)
-            self._add_to_history(self.current_peer,self.call_start_time,self.call_end_time)
 
 #-------End Call-------#
 
-    def _add_to_history(self,peer,start_time,end_time):
+    def _add_to_history(self,peer,start_time,end_time,call_type):
         res = {}
         peer_name = self.get_contact_name(peer.number)
         res["Name"] = peer_name
-        t = start_time - end_time
-        res["Call Duration"] = f"{abs(int(t))}s"
+        t = self.call_end_time - self.call_start_time
+        res["Call Duration"] = f"{abs(int(t))}"
         res["Number"] = peer.number
+        res["Call Type"] = call_type
         self.call_history.append(res)
 
     def print_analysis(self):
-        print(f"\n---Call Analysis for {self.name} {self.number}) ---")
+        print(f"\n---Call Analysis for {self.name} {self.number} ---")
+        #Unique Calls Made
+        print("Unique Calls Made:....")
+        set1 = set()
+        for i in self.call_history:
+            for key,value in i.items():
+                if i["Call Type"] == "dialled":
+                    set1.add(i["Name"])
+        print(len(set1))
+        #Average Call Duration
+        print("Average Call Duration:....")
+        list1 = []
+        for i in self.call_history:
+            for key,value in i.items():
+                if i["Call Type"] in ["dialled","received"] and int(i["Call Duration"])>0:
+                    list1.append(int(i["Call Duration"]))
+        if len(list1) != 0:
+            print(sum(list1)/len(list1))
+        #Most Frequently Called Numbers
+        print("Most Frequently Called Number(s):....")
+        dict1 = {}
+        for i in self.call_history:
+            if i["Call Type"] == "dialled":
+                if i["Name"] in dict1:
+                    dict1[i["Name"]] += 1
+                else:
+                    dict1[i["Name"]] = 1
+        if dict1:
+            s = max(dict1.values())
+            for i,j in dict1.items():
+                if j == s:
+                    print(i)
+        else:
+            print("No Dialled Numbers")
 
 # -------- Testing Case ---------#
 if __name__ == "__main__": 
@@ -182,17 +226,17 @@ if __name__ == "__main__":
     alice.search_by_name("bo")
 
     print("\n---Testing Call Scenario---")
-    alice.place_call("222")
+    alice.place_call("222",0)
     alice.show_status()
     bob.show_status()
-    bob.accept_call()
+    bob.accept_call(2)
     alice.show_status()
     bob.show_status()
     print(".....simulating a 2-second call...")
 
-    time.sleep(10)
+    time.sleep(2)
 
-    alice.end_call()
+    alice.end_call(12)
 
     alice.show_status()
     bob.show_status()
@@ -200,5 +244,8 @@ if __name__ == "__main__":
     print("\n----Final Call History ----")
     print(f"Alice's History : {alice.call_history}")
     print(f"Bob's History: {bob.call_history}")
-    
+    alice.print_analysis()
+    bob.print_analysis()
+
+
 
