@@ -209,6 +209,43 @@ class Phone:
         else:
             print("No Dialled Numbers")
 
+def run_simulation(filename):
+    print("----Starting Phone Simulation ---")
+
+    with open(filename,'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split()
+            command = parts[0]
+            try:
+                if command == "CREATE_PHONE":
+                    if parts[1] not in Phone_Directory:
+                        parts[1] = Phone(parts[2],parts[1])   
+                elif command == "ADD_CONTACT":
+                    Phone_Directory[parts[1]].add_contact(parts[3],parts[2])
+
+                elif command == "CALL":
+                    Phone_Directory[parts[1]].place_call(parts[2],parts[3])
+
+                elif command == "ACCEPT":
+                    Phone_Directory[parts[1]].accept_call(int(parts[2]))
+                
+                elif command == "END":
+                    Phone_Directory[parts[1]].end_call(int(parts[2]))
+            
+            except Exception as e:
+                print(f"ERROR processing line '{line}': {e}")
+            
+    print("\n----Simulation Finished ---")
+
+    for phone in Phone_Directory.values():
+        phone.print_analysis()
+
+run_simulation("C:\Projects\JK Projects\Python-Works\Python-Works\Assignment-3\commands.txt")
+
+"""  
 # -------- Testing Case ---------#
 if __name__ == "__main__": 
     print("---Interactive Phone Test---")
@@ -246,6 +283,8 @@ if __name__ == "__main__":
     print(f"Bob's History: {bob.call_history}")
     alice.print_analysis()
     bob.print_analysis()
+"""
+
 
 
 

@@ -1,0 +1,21 @@
+ # Sample commands for testing
+ CREATE_PHONE Alice 111
+ CREATE_PHONE Bob 222
+
+ # Add contacts
+ ADD_CONTACT 111 Bob 222
+ ADD_CONTACT 222 Alice 111
+
+ # Scenario 1: Alice calls Bob, Bob accepts
+ # Call starts at T=10
+ # Bob accepts at T=12
+ # Alice ends the call at T=52 (Duration: 52-12 = 40)
+ CALL 111 222 10
+ ACCEPT 222 12
+ END 111 52
+ 
+ # Scenario 2: Bob calls Alice, Alice misses
+ # Call starts at T=60
+ # Bob gives up and ends the call at T=70 (Duration: 0)
+ CALL 222 111 60
+ END 222 70
