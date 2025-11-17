@@ -1,4 +1,4 @@
 def celtofah(temp):
-    return ((9*temp)/5)+32
+    return [((x*9)/5)+32 for x in temp]
 
-print(celtofah(45))
+print(celtofah([15,20]))
