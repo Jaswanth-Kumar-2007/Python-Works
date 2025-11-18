@@ -2,15 +2,13 @@ def sortfirstname(dic):
     dict1 = {}
     sorted_items = sorted(dic.items(),key = lambda x : x[1][0])
     for rollno , (firstname,middlename,lastname) in sorted_items :
-        dict1[rollno] = (firstname,middlename,lastname)
-    return dict1
+        print(f"Roll No. - {rollno} , {(firstname,middlename,lastname)}")
 
 students = {
-    101: ("Amit", "Kumar", "Sharma"),
+    101: ("Amit", "Kumar", "Aharma"),
     102: ("Ravi", "Prasad", "Reddy"),
     103: ("Kiran", "Mohan", "Das"),
     104: ("Abhishek", "Singh", "Yadav")
 }
 
-print(sortfirstname(students))
-
+sortfirstname(students)
