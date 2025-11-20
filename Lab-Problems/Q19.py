@@ -8,7 +8,9 @@ class StudentClubs(Club):
         super().__init__(name,students)
 
     def add_club(self,club_name):
-        self.club_name = club_name
+        self.clubs = {}
+        self.clubs[f"{club_name}"]
 
-    def add_student(self,club_name,student_id):
+
+    def add_student(self,club_name,student_id,position):
         pass
