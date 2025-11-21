@@ -1,13 +1,13 @@
 def remove_consecutive_duplicates(lst):
     res = []
-    for i in range(len(lst)):
-        j = i
-        if i+1 < len(lst):
-            while lst[i] == lst[j]:
-                res.append(i)
-                j = j + 1
+    while lst:
+        p = lst[0]
+        i = 1
+        while i < len(lst) and p == lst[i]:
+            lst.pop(i)  
+        res.append(p)
+        lst.pop(0)
+    return res
 
-    return lst
-
-print(remove_consecutive_duplicates([1,1,2,2,2,3,1,1]))
+print(remove_consecutive_duplicates([1,2,2,2,2,2,2,2,2,3,3,3,3]))
 
