@@ -2,12 +2,13 @@ from typing import List
 
 def partition(lst):
     p = lst[0]
-    res = []
-    if p < len(lst):
-        for i in range(len(lst)):
-            if i < p:
-                res.append(lst[i])
-    return res
+    i = 1
+    for j in range(1, len(lst)):
+        if lst[j] <= p:
+            lst[i], lst[j] = lst[j], lst[i]
+            i += 1
+    lst[0], lst[i-1] = lst[i-1], lst[0]
+    return lst
 
-print(partition([5,2,9,3,6,8]))
-print(partition([3,3,3,3]))
+lst = [5,2,3,6,8,9]
+print(partition(lst))
