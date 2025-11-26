@@ -69,8 +69,7 @@ def Game():
     restart = input("Do you want to Restart the Game(Y/N): ").upper()
     if restart == "Y":
         return Game()
-    print("##########################################")
-    elif restart == "N":
+    else:
         return "Thanks for Playing the Game"
 
             
